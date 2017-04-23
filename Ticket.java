@@ -56,9 +56,7 @@ public class Ticket implements Comparable<Ticket> {
 
     //override inherited toString
     public String toString(){
-	String ret = "";
-	ret += priority;
-	return ret;
+	return "" + priority;
     }
 
 }

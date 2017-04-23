@@ -79,7 +79,7 @@ public class ArrayPriorityQueue<T extends Comparable<T>> implements PriorityQueu
     //main method for testing
     public static void main(String[] args) {
 
-	PriorityQueue david = new ArrayPriorityQueue();
+	PriorityQueue<Integer> david = new ArrayPriorityQueue<Integer>();
 	System.out.println("Testing toString method: " + david);
 	System.out.println("Testing isEmpty method: " + david.isEmpty());
 

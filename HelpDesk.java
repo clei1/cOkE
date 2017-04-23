@@ -11,9 +11,9 @@ public class HelpDesk{
     private ArrayPriorityQueue<Ticket> _data;
     private int IDcount;
 
-    //these never change
-    private String[] servicesAll = {"reinstall OS", "dispatch tech", "password reset"};
-    private String[] serviced = {"Your OS has been reinstalled.", "One of the HelpDesk is coming to assist you immediately.", "Your password has been reset to your company ID number."};
+    //these never change; keep servicesAll and serviced in parallel
+    private final String[] servicesAll = {"reinstall OS", "dispatch tech", "password reset"};
+    private final String[] serviced = {"Your OS has been reinstalled.", "One of the HelpDesk is coming to assist you immediately.", "Your password has been reset to your company ID number."};
 
     // constructor -- initializes remaining instance vars
     public HelpDesk(){
@@ -21,7 +21,7 @@ public class HelpDesk{
 	IDcount = 666;
     }
 
-    //asks a human about her/his problem and creates an appriopriate ticket
+    //asks a human about her/his problem and creates an appropriate ticket
     public void createTicket(){
 	System.out.println("Hello, my name is HelpDesk. What is your name?");
 	String name = Keyboard.readString();
@@ -54,13 +54,8 @@ public class HelpDesk{
         if(!_data.isEmpty()){
 	    String processed = "";
 	    Ticket processing = _data.removeMin();
-	    processed += ("Hello, " + processing.getUsername()  + ", the HelpDesk is working on resolving your issue!\n ");
-	    for(int service = 0; service < servicesAll.length; service++){ //gets corresponding processed ticket response
-		if(processing.getDescription().equals(servicesAll[service])){
-		    processed += serviced[service];
-		    break; //once it finds it, end the loop
-		}
-	    }
+	    processed += "Hello, " + processing.getUsername() + ", the HelpDesk is working on resolving your issue!\n ";
+	    processed += serviced[processing.getPriority()]; //gets corresponding processed ticket response
 	    processed += "\n Thank you so much for contacting us! We hope you are satisfied with your service!\n Can we help you with anything else? \n0: Yes \n1: No";
 	    System.out.println(processed);
 	    int answer = Keyboard.readInt();
